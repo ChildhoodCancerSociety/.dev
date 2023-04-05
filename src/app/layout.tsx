@@ -1,5 +1,4 @@
 import './globals.css';
-import Script from "next/script";
 
 export const metadata = {
   title: 'ccs.dev',
@@ -39,9 +38,7 @@ export default function RootLayout({
         { /* eslint-disable-next-line */ }
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;0,800;1,200;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet" />
         { /* eslint-disable-next-line */ }
-        <Script strategy="beforeInteractive" id="theme-id">
-          { themeScript }
-        </Script>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
         {children}
