@@ -13,8 +13,10 @@ const toggleTheme = (t: Theme): Theme => t === "dark" ? "light" : "dark";
 const ThemeToggle: React.FC = () => {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme());
   const toggle = () => {
-    setTheme(toggleTheme);
-    document.documentElement.dataset.mode = toggleTheme(theme);
+    const newTheme = toggleTheme(theme);
+    setTheme(newTheme);
+    document.documentElement.dataset.mode = newTheme;
+    window.localStorage.setItem("theme", newTheme);
   };
 
   return (
