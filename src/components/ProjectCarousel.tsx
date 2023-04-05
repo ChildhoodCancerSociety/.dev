@@ -4,18 +4,21 @@ import { useState } from "react";
 
 interface ProjectProps {
   name: string;
+  imgIconUrl: string;
+  lastUpdated: Date;
 }
 
-const ProjectCarouselUnfocused: React.FC<ProjectProps & { setProject: (project: string) => void; }> = ({ setProject }) => {
-  return <div className="cursor-pointer p-4 m-2 bg-froggy-900"></div>;
+const ProjectCarouselUnfocused: React.FC<ProjectProps & { setProject: (project: string) => void; }> = ({ name, setProject }) => {
+  const onClick = () => setProject(name);
+  return <div onClick={onClick} className="rounded-lg cursor-pointer p-4 m-2 bg-froggy-900">{name}</div>;
 };
 
 interface ProjectDetailsProps extends ProjectProps {
-
+  description: string;
 }
 
-const ProjectCarouselFocused: React.FC<ProjectDetailsProps> = ({ }) => {
-  return <div className="p-6 m-2 bg-froggy-900 flex-grow"></div>;
+const ProjectCarouselFocused: React.FC<ProjectDetailsProps> = ({ name }) => {
+  return <div className="rounded-lg p-6 m-2 bg-froggy-900 flex-grow">{name}</div>;
 };
 
 interface ProjectCarouselProps {
@@ -24,31 +27,47 @@ interface ProjectCarouselProps {
 
 const projects: ProjectDetailsProps[] = [
   {
-    name: "ANNIverse"
+    name: "ANNIverse",
+    description: "",
+    imgIconUrl: "",
+    lastUpdated: new Date()
   },
   {
-    name: "ccs-web-static"
+    name: "ccs-web-static",
+    description: "",
+    imgIconUrl: "",
+    lastUpdated: new Date()
   },
   {
-    name: "wiki"
+    name: "wiki",
+    description: "",
+    imgIconUrl: "",
+    lastUpdated: new Date()
   },
   {
-    name: "theming"
+    name: "theming",
+    description: "",
+    imgIconUrl: "",
+    lastUpdated: new Date()
   }
 ];
 
-const initialFocusedProjectName = projects.find(p => p.name === "ANNIverse")?.name ?? "";
+const initialFocusedProject = projects.find(p => p.name === "ANNIverse") as ProjectDetailsProps;
 
 // ANNIverse, ccs-web-static, wiki, theming
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ }) => {
-  const [focusedProjectName, setFocusedProjectName] = useState<string>(initialFocusedProjectName);
+  const [focusedProjectName, setFocusedProjectName] = useState<string>(initialFocusedProject.name);
 
-  const [focusedProject, ...otherProjects] = projects.sort((pA, pB) => pA.name === focusedProjectName ? 1 : pB.name === focusedProjectName ? 1 : 0)
+  const { focusedProject, otherProjects } = projects.reduce((obj, project) => {
+    const focusedProject = project.name === focusedProjectName ? project : undefined;
+    if(focusedProject) obj.focusedProject = project;
+    else obj.otherProjects?.push(project)
+    return obj;
+  }, { focusedProject: initialFocusedProject, otherProjects: [] } as { focusedProject: ProjectDetailsProps, otherProjects: ProjectDetailsProps[] })
 
   const changeProject = (newProject: string) => {
     setFocusedProjectName(newProject);
   }
-  console.log(otherProjects.length);
 
   return (
     <>
