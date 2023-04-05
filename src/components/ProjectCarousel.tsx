@@ -21,10 +21,6 @@ const ProjectCarouselFocused: React.FC<ProjectDetailsProps> = ({ name }) => {
   return <div className="rounded-lg p-6 m-2 bg-froggy-900 flex-grow">{name}</div>;
 };
 
-interface ProjectCarouselProps {
-
-}
-
 const projects: ProjectDetailsProps[] = [
   {
     name: "ANNIverse",
@@ -55,7 +51,7 @@ const projects: ProjectDetailsProps[] = [
 const initialFocusedProject = projects.find(p => p.name === "ANNIverse") as ProjectDetailsProps;
 
 // ANNIverse, ccs-web-static, wiki, theming
-const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ }) => {
+const ProjectCarousel: React.FC = () => {
   const [focusedProjectName, setFocusedProjectName] = useState<string>(initialFocusedProject.name);
 
   const { focusedProject, otherProjects } = projects.reduce((obj, project) => {
