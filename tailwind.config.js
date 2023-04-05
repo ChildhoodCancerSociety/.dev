@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         froggy: {
+          "50": "#F3FFF6",
           "100": "#E3FFDE",
           "200": "#CDF7C2",
           "300": "#98EA7C",
@@ -18,10 +19,11 @@ module.exports = {
           "700": "#326408",
           "800": "#1A3C07",
           "900": "#0D2005",
-          "black": "#061104",
+          "950": "#061104",
         }
       }
     },
   },
+  darkMode: ["class", '[data-mode="dark"]'],
   plugins: [],
 }

@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply bg-slate-100 dark:bg-zinc-950 text-froggy-black dark:text-froggy-100;
+:root {
+  font-family: "Poppins";
+}
+
+body {
+  @apply bg-froggy-50 dark:bg-froggy-950 text-froggy-900 dark:text-froggy-100 transition ease-in-out duration-200;
 }
 
 h2 {
@@ -12,11 +16,15 @@ h2 {
 
 h2 > span {
   box-shadow: 0 0 7px -2px rgba(208, 208, 208, .15);
-  @apply text-sm uppercase outline outline-1 outline-froggy-100 dark:outline-froggy-black rounded-lg px-3 py-1 bg-froggy-100 dark:bg-froggy-black;
+  @apply text-sm uppercase outline outline-1 outline-froggy-100 dark:outline-froggy-950 rounded-lg px-3 py-1 bg-froggy-100 dark:bg-froggy-900 relative bottom-1;
+}
+
+h2:has(+ span) {
+  @apply relative;
 }
 
 .shadow {
-  box-shadow: 0px 2px 4px 0 rgba(#212529, .12)
+  box-shadow: 0px 2px 4px 0 rgba(#212529, .12);
 }
 
 .nav-item {
@@ -28,5 +36,5 @@ h2 > span {
 }
 
 section {
-  @apply max-w-7xl mx-auto my-4 p-4 rounded-md shadow-lg;
+  @apply max-w-6xl mx-auto my-4 p-4;
 }
