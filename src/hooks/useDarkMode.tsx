@@ -11,16 +11,12 @@ const getInitialTheme = (): Theme => {
 
   const mqTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-  if(typeof mqTheme.matches === "boolean") {
     return mqTheme.matches ? "dark" : "light";
-  }
-
-  return "light";
 }
 
 interface ThemeData {
   theme: Theme;
-  changeTheme: (t: Theme) => void;
+  changeTheme: (t: Theme | ((t: Theme) => Theme)) => void;
 }
 
 const ThemeContext = createContext<ThemeData>({ theme: getInitialTheme(), changeTheme: () => {} });

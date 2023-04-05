@@ -23,7 +23,7 @@ const theme = (() => {
 })();
 
 document.documentElement.dataset.mode = theme;
-`
+`;
 
 export default function RootLayout({
   children,
