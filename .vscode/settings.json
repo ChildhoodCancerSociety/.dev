@@ -8,7 +8,7 @@
   "javascript.inlayHints.enumMemberValues.enabled": true,
   "[javascript][typescript][typescriptreact]": {
     "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 160,
+    "editor.wordWrapColumn": 80,
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "files.associations": {
