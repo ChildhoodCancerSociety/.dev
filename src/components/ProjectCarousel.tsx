@@ -9,8 +9,9 @@ interface ProjectProps {
 }
 
 const ProjectCarouselUnfocused: React.FC<ProjectProps & { setProject: (project: string) => void; }> = ({ name, setProject }) => {
+  const randomNum = Math.floor(Math.random() * 50);
   const onClick = () => setProject(name);
-  return <div onClick={onClick} className="rounded-lg cursor-pointer p-4 m-2 bg-froggy-900">{name}</div>;
+  return <div onClick={onClick} className="rounded-lg cursor-pointer p-4 m-2 bg-froggy-900 w-full block overflow-hidden"><div>{name}</div><div className="block w-full">{new Array(randomNum).map(_ => "").join("| ")}</div></div>;
 };
 
 interface ProjectDetailsProps extends ProjectProps {
@@ -68,7 +69,7 @@ const ProjectCarousel: React.FC = () => {
   return (
     <>
       <ProjectCarouselFocused {...focusedProject} />
-      <div className="flex flex-col min-w-[200px]">{
+      <div className="flex flex-col w-[30%]">{
         otherProjects.map(project => 
             <ProjectCarouselUnfocused
               key={project.name}
